@@ -27,12 +27,6 @@ typedef struct alarm_tag
    char message[128];
    int changedFlag;
 
-
-   // **DELETE THIS BLOCK EVENTUALLY**
-   // insert a field to check when
-   // an alarm has been changed?
-   // int Changed;
-   // **DELETE THIS BLOCK EVENTUALLY**
 } alarm_t;
 
 
@@ -40,6 +34,7 @@ typedef struct alarm_tag
 pthread_mutex_t alarm_mutex = PTHREAD_MUTEX_INITIALIZER;
 
 
+// Signal condition for display thread letting it know to run
 pthread_cond_t display_cond = PTHREAD_COND_INITIALIZER;
 
 
@@ -190,7 +185,7 @@ void *alarm_thread(void *arg){
                 time(NULL),
                 alarm->time,
                 alarm->message
-                )
+                );
 
         }
 
@@ -259,7 +254,9 @@ void *display_thread(void *arg){
                 firstDisplayFlag = 1;    
                } 
 
-               printf("");
+               printf("Display Thread Printing Message Of Alarm(%d): %s\n",
+               alarm->id,
+               alarm->message);
                sleep(5);
 
 
@@ -280,7 +277,7 @@ void *display_thread(void *arg){
         pthread_self(),
         time(NULL),
         alarm->time,
-        alarm->message,
+        alarm->message
       );
 
       // No more alarms so terminate thread?
