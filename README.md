@@ -10,8 +10,10 @@ EECS 3221 Assingment2
 
 3 - Type "a.out" to run the executable code.
 
-4 - At the prompt "ALARM>", type in the number of seconds at which the alarm should expire, followed by the text of the message. For example:
+4 - At the prompt "ALARM>", type in "Start_Alarm" or "Change_Alarm" followed by the Alarm_ID in brackets, followed by a ":", followed by the number of seconds at which the alarm should expire, followed by the text of the message. For example:
 
-    ALARM> 2 Good Morning!
+    Alarm> Start_Alarm(1): 2 Good Morning!
+    //or
+    Alarm> Change_Alarm(1): 10 Good Night!
 
 (To exit from the program, type Ctrl-d.)
