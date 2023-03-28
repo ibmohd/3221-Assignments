@@ -135,21 +135,6 @@ void print_alarms(){
 }
 
 //assigns an alarm to a display thread
-// void add_to_display(alarm_t* alarm, display_t* display){
-
-//     if(display->alarm_list == NULL){
-//         display->alarm_list = alarm;
-//     }else{
-//         alarm_t *current_alarm = display->alarm_list;
-//         while(current_alarm->link != NULL){
-//             current_alarm = current_alarm->link;
-//         }
-//         current_alarm->link = alarm;
-//     }
-
-// }
-
-// alternate assigns an alarm to a display thread
 void add_to_display(alarm_t* alarm, display_t* display){
     alarm->assigned_thread = display->tid;
 }
