@@ -1,0 +1,18 @@
+During the earlier stages of development we were unsure as to how to create and track the multiple 
+possible display threads that would be created in the program. Eventually we decided on creating a struct 
+definition similar to the alarm tag struct, that would hold the thread id's, group id's and a linked list of
+all the active displays in the program.
+
+We also encountered difficulties during the implementation of the alarm removal thread and had an occurance where
+an infinite loop occured when the thread encountered two alarms that were set for removal at the same time. We fixed this
+by calling sem_wait and sem_post before and after locking and unlocking the mutex in both the alarm removal thread and the
+main thread, when an alarm was being inserted into the alarm list.
+
+After much trial and error with regards as to how to assign an alarm to a display thread, we came to the solution of adding
+additional fields to the alarm_tag struct. The struct has fields that track the current and previously assigned thread and using this
+we were able to progress with the rest of the assignment.
+
+Finally, we also had difficulties implementing the "Writer-Reader" situation in the program in certain aspects. We implemented the
+alarm display thread as a reader process, as it never changes any data in the alarm list, however, the removal and group creation threads were
+designated as writer processes as they needed to modify the alarm list in some way or another.
+
